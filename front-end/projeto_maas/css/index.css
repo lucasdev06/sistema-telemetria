@@ -7,6 +7,7 @@
 
 body{
   font-family: "DM Sans", sans-serif;
+  background-color: #F2ECDE;
 }
 
 .barra-lateral-menu{
@@ -15,6 +16,9 @@ body{
     height: 100vh;
     padding: 8px;
     text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .barra-lateral-menu img{
@@ -34,7 +38,28 @@ body{
     text-decoration: none;
 }
 
+
 .barra-lateral-menu ul li a{
     text-decoration: none;
     color: azure;
 }
+
+.container_header{
+    margin-left: 300px;
+    display: flex;
+}
+
+
+.button_adicionar{
+    text-align: center;
+    background-color: #183B48;
+    width: 200px;
+    height: 30px;
+    display: flex;
+    margin: right;
+}
+
+.button_adicionar img{
+    width: 30px;
+}
+
