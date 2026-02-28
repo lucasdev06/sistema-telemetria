@@ -45,21 +45,52 @@ body{
 }
 
 .container_header{
-    margin-left: 300px;
+    margin: 20px 0px 0px 280px;
     display: flex;
+    background-color: #183B48;
+    width: 85%;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.container_header h1{
+    color: #F2ECDE;
+}
+
+.container_header p{
+    color: #57B179;
+    font-size: 18px;
+}
+.container_information{
+    width: 100%;
+    padding: 10px;
 }
 
 
 .button_adicionar{
     text-align: center;
-    background-color: #183B48;
+    background-color: #ED712E;
     width: 200px;
     height: 30px;
     display: flex;
-    margin: right;
+    margin: 23px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .button_adicionar img{
     width: 30px;
+    margin-right: 10px;
+}
+
+.button_adicionar button{
+    margin-left: 10px;
+    height: 33px;
+    width: 100px;
+    background-color: transparent;
+    border-style: none;
+    font-size: 22px;
+    color: white;
+    text-align: center;
 }
 
