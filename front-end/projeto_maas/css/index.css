@@ -12,7 +12,7 @@ body{
 
 .barra-lateral-menu{
     background-color: #183B48;
-    width: 250px;
+    width: 260px;
     height: 100vh;
     padding: 8px;
     text-align: center;
@@ -38,17 +38,16 @@ body{
     text-decoration: none;
 }
 
-
 .barra-lateral-menu ul li a{
     text-decoration: none;
     color: azure;
 }
 
 .container_header{
-    margin: 20px 0px 0px 280px;
+    margin: 20px 20px 0px 296px;
     display: flex;
     background-color: #183B48;
-    width: 85%;
+    max-width: 100%;
     border-radius: 20px;
     padding: 10px;
 }
@@ -94,3 +93,159 @@ body{
     text-align: center;
 }
 
+.information_cards_principal{
+    margin-left: 230px;
+    display: flex;
+}
+
+.information_cards_principal .cards{
+    margin: 30px 30px 0px 90px;
+    padding: 60px;
+    width: 300px;
+    border-radius: 20px;
+    background-color: #183B48;
+    color: #F2ECDE;
+    display: flex;
+}
+
+.information_cards h1{
+    font-size: 39px;
+}
+
+.information_cards span{
+    font-size: 22px;
+}
+
+.icone_cards img{
+    width: 80px;
+    margin-left: 130px; 
+}
+
+.call_tables{
+    margin: 60px 30px 0px 300px;
+    background-color: #d4d4d4;
+    border-radius: 10px;
+}
+
+.call_tables table{
+    width: 100%;
+    border-radius: 10px; /* Arredonda */
+    border-collapse: separate; /* IMPORTANTE */
+    border-spacing: 0; /* Remove espaçamento interno */
+    overflow: hidden; /* Garante que o arredondado apareça */
+}
+
+.call_tables th{
+    border: 0.1px solid #aca9a9c4;
+    padding: 8px;
+    text-align: center;
+    background-color: #183B48;
+    color: #d4d4d4;
+}
+
+.call_tables td{
+    text-align: center;
+    height: 45px;
+}
+
+/* Fundo escuro que cobre a tela */
+.modal-overlay {
+  display: none; /* Escondido por padrão */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Preto com 50% de transparência */
+  z-index: 1000;
+}
+
+/* A caixa branca do modal */
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centraliza perfeitamente */
+  background: #F2ECDE;
+  padding: 20px;
+  border-radius: 8px;
+  width: 700px;
+  height: 550px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+/* Container que divide em 2 colunas */
+.container_formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+  gap: 15px; /* Espaçamento entre os campos */
+  margin-top: 20px;
+}
+
+/* Cada par Label + Input */
+.form-group {
+  display: flex;
+  flex-direction: column; /* Força o input a ir para baixo da label */
+  align-items: flex-start; /* Alinha tudo à esquerda */
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px; /* Espaço entre o nome e o campo */
+  color: #333;
+}
+
+.form-group input, 
+.form-group textarea {
+  width: 100%; /* Faz o campo ocupar toda a largura da coluna */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Garante que o padding não quebre a largura */
+}
+
+/* Ocupar a linha inteira para Observações */
+.full-width {
+  grid-column: span 2;
+}
+
+/* Estilo dos botões */
+.modal-footer {
+  margin-top: 25px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Classe utilitária para mostrar o modal via JS */
+.active {
+  display: block;
+}
+
+.selecion_status{
+  width: 100%; /* Faz o campo ocupar toda a largura da coluna */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Garante que o padding não quebre a largura */
+}
+
+.modal-footer button{
+    width: 190px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 19px;
+}
+
+.modal-footer .btn-secondary{
+    background-color: #ED712E;
+    color: #F2ECDE;
+}
+
+.modal-footer .btn-primary{
+    background-color: #183B48;
+    color: #F2ECDE;
+}

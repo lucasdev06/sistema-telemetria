@@ -10,9 +10,9 @@
     <nav class="barra-lateral-menu">
         <img src="assets/images/logo_maas.png" alt="Logo Maas Serviços">
         <ul class="list_menu">
-            <li><a href="#">Contr. Chamado</a></li>
-            <li><a href="#">Faturamento</a></li>
-            <li><a href="#">Estoque</a></li>
+            <li class="menu-option" style="background-color: #57B179; padding: 10px; height: 40px; border-radius: 10px;"><a href="index.html">Contr. Chamado</a></li>
+            <li class= "menu-option" style="padding: 10px; height: 40px; border-radius: 10px;"> <a href="pages/faturamento.html">Faturamento</a></li>
+            <li class="menu-option" style="padding: 10px; height: 40px; border-radius: 10px;"> <a href="#">Estoque</a></li>
         </ul>
     </nav>
     <header>
@@ -23,9 +23,156 @@
             </div>
             <div class="button_adicionar">
                 <img src="assets/icons/adicionar-acrescentar.png" alt="Imagem Adicionar">
-                <button>Adicionar</button>
+                <button id="openModal">Adicionar</button>
+            </div>
+            <div id="modalContainer" class="modal-overlay">
+                <div class="modal-content">
+                    <h2>Adicionar Agendamento</h2>
+                    <p>Preencha os dados do Agendamento</p>
+                    <div class="container_formulario">
+                        <div class="form-group">
+                            <label for="text">Data/hora</label>
+                            <input type="date" name="calendario" id="data-hora">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="text">Ticket</label>
+                            <input type="number">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="text">Placa</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="text">Ocorrência</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="text">Tipo</label>
+                            <select name="Tipo_Serviço" id="selecion_tipo" class="selecion_status">
+                                <option value="Tipo de Serviço">Manutenção</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="text">Status</label>
+                            <select name="Tipo_status" id="selecion_tipo" class="selecion_status">
+                                <option value="Tipo_Status">Aberto</option>
+                                <option value="Tipo_Status">Aguardando fornecedor</option>
+                                <option value="Tipo_Status">Aguardando cliente</option>
+                                <option value="Tipo_Status">Agendado</option>
+                                <option value="Tipo_Status">Em atendimento</option>
+                                <option value="Tipo_Status">Concluído</option>
+                                <option value="Tipo_Status">Cancelado / Indisponível</option>
+                                <option value="Tipo_Status">Aguardando Orçamento</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="text">Prazo</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="text">Resultado Final</label>
+                            <select name="tipo_de_resultadofinal" id="selecion_tipo" class="selecion_status">
+                                <option value="tipo_de_resultadofinal">Normalizado (online)</option>
+                                <option value="tipo_de_resultadofinal">Equipamento Substituído</option>
+                                <option value="tipo_de_resultadofinal">Sem atendimento (indisponivel)</option>
+                                <option value="tipo_de_resultadofinal">Pendente</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text">Causa Raiz</label>
+                        <select name="Tipo_status" id="selecion_tipo" class="selecion_status">
+                            <option value="tipo_causaraiz">Cobertura</option>
+                            <option value="tipo_causaraiz">Instalação/Alimentação</option>
+                            <option value="tipo_causaraiz">Equipamento defeituoso</option>
+                            <option value="tipo_causaraiz">Chip/Operadora</option>
+                            <option value="tipo_causaraiz">Base de contatos/local</option>
+                            <option value="tipo_causaraiz">Outros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text">Observações</label>
+                        <textarea name="" id=""></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button id="closeModal" class="btn-secondary">Cancelar</button>
+                        <button class="btn-primary">Salvar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
+
+    <main>
+        <div class="information_cards_principal">
+            <div class="cards">
+                <div class="information_cards">
+                    <h1>12</h1>
+                    <span>Em Atendimento</span>
+                </div>
+                <div class="icone_cards">
+                    <img src="assets/icons/fone-de-ouvido.png" alt="">
+                </div>
+            </div>
+            <div class="cards">
+                <div class="information_cards">
+                    <h1>17</h1>
+                    <span>Em Atraso</span>
+                </div>
+                <div class="icone_cards">
+                    <img src="assets/icons/tempo.png" alt="">
+                </div>
+            </div>
+            <div class="cards">
+                <div class="information_cards">
+                    <h1>9</h1>
+                    <span>Aguardando Abertura</span>
+                </div>
+                <div class="icone_cards">
+                    <img src="assets/icons/ponto-de-exclamacao.png" alt="">
+                </div>
+            </div>
+            <div class="cards">
+                <div class="information_cards">
+                    <h1>24</h1>
+                    <span>Concluído</span>
+                </div>
+                <div class="icone_cards">
+                    <img src="assets/icons/resolvido.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="call_tables">
+            <table>
+                <tr>
+                    <th>Data/Hora</th>
+                    <th>Ticket</th>
+                    <th>Placa</th>
+                    <th>Ocorrência</th>
+                    <th>Tipo</th>
+                    <th>Status</th>
+                    <th>Prazo</th>
+                    <th>Resultado</th>
+                    <th>Causa Raiz</th>
+                    <th>Observaçõs</th>
+                </tr>
+                <tr>
+                    <td class="information_table" colspan="10">Sem nenhuma informação.</td>
+                </tr>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/scripts.js"></script>
 </body>
 </html>
