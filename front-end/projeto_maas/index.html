@@ -32,76 +32,79 @@
                     <div class="container_formulario">
                         <div class="form-group">
                             <label for="text">Data/hora</label>
-                            <input type="date" name="calendario" id="data-hora">
+                            <input type="date" name="calendario" id="data_hora">
                         </div>
 
                         <div class="form-group">
                             <label for="text">Ticket</label>
-                            <input type="number">
+                            <input type="number" id="ticket">
                         </div>
 
                         <div class="form-group">
                             <label for="text">Placa</label>
-                            <input type="text">
+                            <input type="text" id="placa">
                         </div>
 
                         <div class="form-group">
                             <label for="text">Ocorrência</label>
-                            <input type="text">
+                            <input type="text" id="ocorrencia">
                         </div>
 
                         <div class="form-group">
                             <label for="text">Tipo</label>
                             <select name="Tipo_Serviço" id="selecion_tipo" class="selecion_status">
-                                <option value="Tipo de Serviço">Manutenção</option>
+                                <option value="Tipo de Serviço" id="Manutencao">Manutenção</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="text">Status</label>
-                            <select name="Tipo_status" id="selecion_tipo" class="selecion_status">
-                                <option value="Tipo_Status">Aberto</option>
-                                <option value="Tipo_Status">Aguardando fornecedor</option>
-                                <option value="Tipo_Status">Aguardando cliente</option>
-                                <option value="Tipo_Status">Agendado</option>
-                                <option value="Tipo_Status">Em atendimento</option>
-                                <option value="Tipo_Status">Concluído</option>
-                                <option value="Tipo_Status">Cancelado / Indisponível</option>
-                                <option value="Tipo_Status">Aguardando Orçamento</option>
+                            <select name="Tipo_status" id="status" class="selecion_status">
+                                <option value="Selecionar">Selecionar...</option>
+                                <option value="Aberto">Aberto</option>
+                                <option value="Aguardando fornecedor">Aguardando fornecedor</option>
+                                <option value="Aguardando cliente">Aguardando cliente</option>
+                                <option value="Agendado">Agendado</option>
+                                <option value="Em atendimento">Em atendimento</option>
+                                <option value="Concluído">Concluído</option>
+                                <option value="Cancelado / Indisponível">Cancelado / Indisponível</option>
+                                <option value="Aguardando Orçamento">Aguardando Orçamento</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="text">Prazo</label>
-                            <input type="text">
+                            <input type="date" name="calendario" id="data_hora_prazo">
                         </div>
 
                         <div class="form-group">
                             <label for="text">Resultado Final</label>
-                            <select name="tipo_de_resultadofinal" id="selecion_tipo" class="selecion_status">
-                                <option value="tipo_de_resultadofinal">Normalizado (online)</option>
-                                <option value="tipo_de_resultadofinal">Equipamento Substituído</option>
-                                <option value="tipo_de_resultadofinal">Sem atendimento (indisponivel)</option>
-                                <option value="tipo_de_resultadofinal">Pendente</option>
+                            <select name="tipo_de_resultadofinal" id="resultado_final" class="selecion_status">
+                                <option value="Selecionar">Selecionar...</option>
+                                <option value="Normalizado (online)">Normalizado (online)</option>
+                                <option value="Equipamento Substituído">Equipamento Substituído</option>
+                                <option value="Sem atendimento (indisponivel)">Sem atendimento (indisponivel)</option>
+                                <option value="Pendente">Pendente</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="text">Causa Raiz</label>
-                        <select name="Tipo_status" id="selecion_tipo" class="selecion_status">
-                            <option value="tipo_causaraiz">Cobertura</option>
-                            <option value="tipo_causaraiz">Instalação/Alimentação</option>
-                            <option value="tipo_causaraiz">Equipamento defeituoso</option>
-                            <option value="tipo_causaraiz">Chip/Operadora</option>
-                            <option value="tipo_causaraiz">Base de contatos/local</option>
-                            <option value="tipo_causaraiz">Outros</option>
+                        <select name="Tipo_status" id="causa_raiz" class="selecion_status">
+                            <option value="Selecionar">Selecionar...</option>
+                            <option value="Cobertura">Cobertura</option>
+                            <option value="Instalação/Alimentação">Instalação/Alimentação</option>
+                            <option value="Equipamento defeituoso">Equipamento defeituoso</option>
+                            <option value="Chip/Operadora">Chip/Operadora</option>
+                            <option value="Base de contatos/local">Base de contatos/local</option>
+                            <option value="Outros">Outros</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="text">Observações</label>
-                        <textarea name="" id=""></textarea>
+                        <textarea name="Observações" id="observacoes"></textarea>
                     </div>
 
                     <div class="modal-footer">
@@ -152,27 +155,35 @@
                 </div>
             </div>
         </div>
-        <div class="call_tables">
-            <table>
-                <tr>
-                    <th>Data/Hora</th>
-                    <th>Ticket</th>
-                    <th>Placa</th>
-                    <th>Ocorrência</th>
-                    <th>Tipo</th>
-                    <th>Status</th>
-                    <th>Prazo</th>
-                    <th>Resultado</th>
-                    <th>Causa Raiz</th>
-                    <th>Observaçõs</th>
-                </tr>
-                <tr>
-                    <td class="information_table" colspan="10">Sem nenhuma informação.</td>
-                </tr>
-            </table>
+        <div class="background_table">
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data/Hora</th>
+                            <th>Ticket</th>
+                            <th>Placa</th>
+                            <th>Ocorrência</th>
+                            <th>Tipo</th>
+                            <th>Status</th>
+                            <th>Prazo</th>
+                            <th>Resultado</th>
+                            <th>Causa Raiz</th>
+                            <th>Observaçõs</th>
+                        </tr>
+                    </thead>
+                    <tbody id="call_tables">
+                        <tr id="linhaVazia">
+                            <td class="information_table_td" colspan="10">
+                                Sem nenhuma informação.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 
-    <script src="js/scripts.js"></script>
+    <script type="module" src="js/scripts.js"></script>
 </body>
 </html>
