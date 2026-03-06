@@ -22,8 +22,7 @@
                 <p>MAAS-SERVIÇOS</p>
             </div>
             <div class="button_adicionar">
-                <img src="assets/icons/adicionar-acrescentar.png" alt="Imagem Adicionar">
-                <button id="openModal">Adicionar</button>
+                <button id="openModal"><img src="assets/icons/adicionar-acrescentar.png" alt="Imagem Adicionar">Adicionar</button>
             </div>
             <div id="modalContainer" class="modal-overlay">
                 <div class="modal-content">
@@ -32,7 +31,7 @@
                     <div class="container_formulario">
                         <div class="form-group">
                             <label for="text">Data/hora</label>
-                            <input type="date" name="calendario" id="data_hora">
+                            <input type="datetime-local" name="calendario" id="data_hora">
                         </div>
 
                         <div class="form-group">
@@ -74,12 +73,12 @@
 
                         <div class="form-group">
                             <label for="text">Prazo</label>
-                            <input type="date" name="calendario" id="data_hora_prazo">
+                            <input type="date" name="calendario" id="data_hora_prazo" disabled>
                         </div>
 
                         <div class="form-group">
                             <label for="text">Resultado Final</label>
-                            <select name="tipo_de_resultadofinal" id="resultado_final" class="selecion_status">
+                            <select name="tipo_de_resultadofinal" id="resultado_final" class="selecion_status" disabled>
                                 <option value="Selecionar">Selecionar...</option>
                                 <option value="Normalizado (online)">Normalizado (online)</option>
                                 <option value="Equipamento Substituído">Equipamento Substituído</option>
@@ -91,7 +90,7 @@
 
                     <div class="form-group">
                         <label for="text">Causa Raiz</label>
-                        <select name="Tipo_status" id="causa_raiz" class="selecion_status">
+                        <select name="Tipo_status" id="causa_raiz" class="selecion_status" disabled>
                             <option value="Selecionar">Selecionar...</option>
                             <option value="Cobertura">Cobertura</option>
                             <option value="Instalação/Alimentação">Instalação/Alimentação</option>
@@ -121,7 +120,7 @@
             <div class="cards">
                 <div class="information_cards">
                     <h1>12</h1>
-                    <span>Em Atendimento</span>
+                    <p>Em Atendimento<p>
                 </div>
                 <div class="icone_cards">
                     <img src="assets/icons/fone-de-ouvido.png" alt="">
@@ -129,7 +128,7 @@
             </div>
             <div class="cards">
                 <div class="information_cards">
-                    <h1>17</h1>
+                    <h1>1</h1>
                     <span>Em Atraso</span>
                 </div>
                 <div class="icone_cards">
@@ -148,7 +147,7 @@
             <div class="cards">
                 <div class="information_cards">
                     <h1>24</h1>
-                    <span>Concluído</span>
+                    <span>Concluídoa</span>
                 </div>
                 <div class="icone_cards">
                     <img src="assets/icons/resolvido.png" alt="">
@@ -169,7 +168,7 @@
                             <th>Prazo</th>
                             <th>Resultado</th>
                             <th>Causa Raiz</th>
-                            <th>Observaçõs</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody id="call_tables">

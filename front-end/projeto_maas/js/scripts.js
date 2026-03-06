@@ -23,11 +23,18 @@ window.addEventListener('click', (event) => {
 });
 
 // ===============================
+// CARREGA TABELA AO ABRIR A PÁGINA
+// ===============================
+document.addEventListener('DOMContentLoaded', preencherTabela);
+
+
+// ===============================
 // SALVAR DADOS
 // ===============================
 async function adicionar() {
   try {
-    const data_hora = document.getElementById('data_hora').value;
+    const datainput = document.getElementById('data_hora').value;
+    const data_hora = new Date(datainput)
     const ticket = document.getElementById('ticket').value;
     const placa = document.getElementById('placa').value;
     const ocorrencia = document.getElementById('ocorrencia').value;
@@ -37,6 +44,18 @@ async function adicionar() {
     const resultado = document.getElementById('resultado_final').value || null;
     const causa_raiz = document.getElementById('causa_raiz').value || null;
     const observacoes = document.getElementById('observacoes').value || null;
+    
+
+    // Data atual
+    const dataAtual = new Date();
+
+
+    // Validação
+    if ((data_hora) < dataAtual) {
+      alert('Data de abertura do chamado é menor que a data atual');
+      return;
+    }
+
 
     const { error } = await client
       .from('controle_chamados')
@@ -58,6 +77,7 @@ async function adicionar() {
     if (error) throw error;
 
     alert("Salvo com sucesso 🚀");
+
   } catch (err) {
     console.error(err);
     alert("Erro ao salvar");
@@ -106,7 +126,7 @@ async function preencherTabela() {
     const tr = document.createElement('tr');
 
     tr.innerHTML = `
-      <td>${new Date(item.data_hora).toLocaleString()}</td>
+      <td>${new Date(item.data_hora).toLocaleString('pt-BR')}</td>
       <td>${item.ticket}</td>
       <td>${item.placa}</td>
       <td>${item.ocorrencia}</td>
@@ -115,7 +135,7 @@ async function preencherTabela() {
       <td>${item.prazo ? new Date(item.prazo).toLocaleDateString() : ''}</td>
       <td>${item.resultado ?? ''}</td>
       <td>${item.causa_raiz ?? ''}</td>
-      <td>${item.observacoes ?? ''}</td>
+      <td class="acoes_alterar"><img src="assets/icons/editar.png" style="width: 20px;" alt="açoes_alterar"></td>
     `;
 
     tbody.appendChild(tr);
@@ -131,7 +151,5 @@ btnSalvar.addEventListener('click', async () => {
   modal.classList.remove('active');
 });
 
-// ===============================
-// CARREGA TABELA AO ABRIR A PÁGINA
-// ===============================
-document.addEventListener('DOMContentLoaded', preencherTabela);
+
+

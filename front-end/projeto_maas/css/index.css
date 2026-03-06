@@ -72,6 +72,7 @@ body{
     width: 200px;
     height: 30px;
     display: flex;
+    flex-wrap: wrap;
     margin: 23px;
     padding: 10px;
     border-radius: 10px;
@@ -84,7 +85,8 @@ body{
 
 .button_adicionar button{
     margin-left: 10px;
-    height: 33px;
+    display: flex;
+    height: 38px;
     width: 100px;
     background-color: transparent;
     border-style: none;
@@ -94,68 +96,36 @@ body{
 }
 
 .information_cards_principal{
-    margin-left: 230px;
+    margin: 30px 23px 0px 300px;
+    max-width: 100%;
     display: flex;
-    width: 300px;
+    gap: 100px; 
+    flex-wrap: wrap; /* faz quebrar quando faltar espaço */
 }
 
 .cards{
-    margin: 30px 30px 0px 90px;
-    padding: 60px;
+    padding: 10px;
     width: 300px;
+    height: 100px;
     border-radius: 20px;
     background-color: #183B48;
     color: #F2ECDE;
     display: flex;
+    align-items: center;
 }
 
 .information_cards h1{
-    font-size: 39px;
+    font-size: 33px;
 }
 
-.information_cards span{
-    font-size: 22px;
+.information_cards p{
+    font-size: 18px;
 }
 
 .icone_cards img{
-    width: 80px;
-    margin-left: 130px; 
-}
-
-.background_table {
-    height: 800px;        /* referência real */
-}
-
-.table-scroll {
-    margin: 60px 30px 0px 300px;
-    background-color: #d4d4d4;
-    border-radius: 10px;
-    height: 100%;         /* agora funciona */
-    overflow-y: auto;
-}
-
-.table-scroll table{
-    width: 100%;
-    border-radius: 10px; /* Arredonda */
-    border-collapse: separate; /* IMPORTANTE */
-    border-spacing: 0; /* Remove espaçamento interno */
-    overflow: hidden; /* Garante que o arredondado apareça */
-}
-
-
-
-.table-scroll th{
-    border: 0.1px solid #aca9a9c4;
-    padding: 8px;
-    text-align: center;
-    background-color: #183B48;
-    color: #d4d4d4;
-}
-
-.table-scroll td{
-    text-align: center;
-    height: 45px;
-    border-bottom: 0.5px solid #9ab2bb;
+    width: 60px;
+    margin-top: 20px;
+    margin-left: 120px; 
 }
 
 /* Fundo escuro que cobre a tela */
@@ -258,4 +228,40 @@ body{
 .modal-footer .btn-primary{
     background-color: #183B48;
     color: #F2ECDE;
+}
+
+.background_table {
+    height: 50%;        /* referência real */
+}
+
+.table-scroll {
+    margin: 60px 30px 0px 300px;
+    background-color: #d4d4d4;
+    border-radius: 10px;
+    max-height: 500px;         /* agora funciona */
+    overflow-y: auto;
+}
+
+.table-scroll table{
+    width: 100%;
+    border-radius: 10px; /* Arredonda */
+    border-collapse: separate; /* IMPORTANTE */
+    border-spacing: 0; /* Remove espaçamento interno */
+    overflow: hidden; /* Garante que o arredondado apareça */
+}
+
+
+
+.table-scroll th{
+    border: 0.1px solid #aca9a9c4;
+    padding: 8px;
+    text-align: center;
+    background-color: #183B48;
+    color: #d4d4d4;
+}
+
+.table-scroll td{
+    text-align: center;
+    height: 45px;
+    border-bottom: 0.5px solid #9ab2bb;
 }

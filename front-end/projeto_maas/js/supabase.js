@@ -5,6 +5,6 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 
 export const client = createClient(supabaseUrl, supabaseKey)
 
-console.log("Teste de Conexão: ", client);
+console.log("Teste de Conexão: Ok", client);
 
 
