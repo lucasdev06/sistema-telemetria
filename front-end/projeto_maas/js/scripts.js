@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', preencherTabela);
 async function adicionar() {
   try {
     const datainput = document.getElementById('data_hora').value;
-    const data_hora = new Date(datainput)
     const ticket = document.getElementById('ticket').value;
     const placa = document.getElementById('placa').value;
     const ocorrencia = document.getElementById('ocorrencia').value;
@@ -44,24 +43,13 @@ async function adicionar() {
     const resultado = document.getElementById('resultado_final').value || null;
     const causa_raiz = document.getElementById('causa_raiz').value || null;
     const observacoes = document.getElementById('observacoes').value || null;
-    
-
-    // Data atual
-    const dataAtual = new Date();
-
-
-    // Validação
-    if ((data_hora) < dataAtual) {
-      alert('Data de abertura do chamado é menor que a data atual');
-      return;
-    }
 
 
     const { error } = await client
       .from('controle_chamados')
       .insert([
         {
-          data_hora,
+          datainput,
           ticket,
           placa,
           ocorrencia,
@@ -126,7 +114,11 @@ async function preencherTabela() {
     const tr = document.createElement('tr');
 
     tr.innerHTML = `
-      <td>${new Date(item.data_hora).toLocaleString('pt-BR')}</td>
+      <td>
+        ${new Date(item.data_hora).toLocaleString('pt-BR', {
+        timeZone: 'America/Sao_Paulo'
+        })}
+      </td>
       <td>${item.ticket}</td>
       <td>${item.placa}</td>
       <td>${item.ocorrencia}</td>
