@@ -5,72 +5,12 @@ const closeBtn = document.getElementById('closeModal');
 const modal = document.getElementById('modalContainer');
 const btnSalvar = document.querySelector('.btn-primary');
 
-// ===============================
-// MODAL
-// ===============================
-openBtn.addEventListener('click', () => {
-  modal.classList.add('active');
-});
-
-closeBtn.addEventListener('click', () => {
-  modal.classList.remove('active');
-});
-
-window.addEventListener('click', (event) => {
-  if (event.target === modal) {
-    modal.classList.remove('active');
-  }
-});
 
 // ===============================
 // CARREGA TABELA AO ABRIR A PÁGINA
 // ===============================
 document.addEventListener('DOMContentLoaded', preencherTabela);
 
-
-// ===============================
-// SALVAR DADOS
-// ===============================
-async function adicionar() {
-  try {
-    const datainput = document.getElementById('data_hora').value;
-    const ticket = document.getElementById('ticket').value;
-    const placa = document.getElementById('placa').value;
-    const ocorrencia = document.getElementById('ocorrencia').value;
-    const tipo = document.getElementById('Manutencao').value;
-    const status = document.getElementById('status').value;
-    const prazo = document.getElementById('data_hora_prazo').value || null;
-    const resultado = document.getElementById('resultado_final').value || null;
-    const causa_raiz = document.getElementById('causa_raiz').value || null;
-    const observacoes = document.getElementById('observacoes').value || null;
-
-
-    const { error } = await client
-      .from('controle_chamados')
-      .insert([
-        {
-          datainput,
-          ticket,
-          placa,
-          ocorrencia,
-          tipo,
-          status,
-          prazo,
-          resultado,
-          causa_raiz,
-          observacoes
-        }
-      ]);
-
-    if (error) throw error;
-
-    alert("Salvo com sucesso 🚀");
-
-  } catch (err) {
-    console.error(err);
-    alert("Erro ao salvar");
-  }
-}
 
 // ===============================
 // BUSCAR DADOS
@@ -133,6 +73,74 @@ async function preencherTabela() {
     tbody.appendChild(tr);
   });
 }
+
+
+// ===============================
+// MODAL
+// ===============================
+openBtn.addEventListener('click', () => {
+  modal.classList.add('active');
+});
+
+closeBtn.addEventListener('click', () => {
+  modal.classList.remove('active');
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === modal) {
+    modal.classList.remove('active');
+  }
+});
+
+
+// ===============================
+// SALVAR DADOS
+// ===============================
+
+async function adicionar() {
+  try {
+    const input = document.getElementById('data_hora').value;
+    const ticket = document.getElementById('ticket').value;
+    const placa = document.getElementById('placa').value;
+    const ocorrencia = document.getElementById('ocorrencia').value;
+    const tipo = document.getElementById('Manutencao').value;
+    const status = document.getElementById('status').value;
+    const prazo = document.getElementById('data_hora_prazo').value || null;
+    const resultado = document.getElementById('resultado_final').value || null;
+    const causa_raiz = document.getElementById('causa_raiz').value || null;
+    const observacoes = document.getElementById('observacoes').value || null;
+
+    const dateLocal = new Date(input);
+    dateLocal.setMinutes(dateLocal.getMinutes() - dateLocal.getTimezoneOffset());
+
+    const dataInput = dateLocal.toISOString();
+    const date_computer = new Date()
+
+    const { error } = await client
+    .from('controle_chamados')
+    .insert([
+      {
+        data_hora: dataInput, // ✅ corrigido
+        ticket,
+        ocorrencia,
+        placa,
+        tipo,
+        status,
+        prazo,
+        resultado,
+        causa_raiz,
+        observacoes
+      }
+    ]);
+
+    if (error) throw error;
+      alert("Salvo com sucesso 🚀");
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao salvar");
+    }
+}
+
 
 // ===============================
 // EVENTO SALVAR
