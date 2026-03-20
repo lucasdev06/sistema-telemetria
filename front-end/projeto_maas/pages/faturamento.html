@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Faturamento</title>
     <link rel="stylesheet" href="../css/faturamento.css">
+    <link rel="shortcut icon" href="../assets/icons/tracking (3).png" type="image/x-icon">>
 </head>
 <body>
     <nav class="barra-lateral-menu">
-        <!-- <img src="../assets/images/logo_maas.png" alt="Logo Maas Serviços"> -->
+        <img src="../assets/images/logo_maas.png" alt="Logo Maas Serviços">
         <ul class="list_menu">
             <li class="menu-option" style="padding: 10px; height: 40px; border-radius: 10px;"><a href="../index.html">Contr. Chamado</a></li>
             <li class= "menu-option" style="background-color: #57B179; padding: 10px; height: 40px; border-radius: 10px;"><a href="../pages/faturamento.html">Faturamento</a></li>
@@ -19,49 +20,168 @@
         <div class="container_header">
             <div class="container_information">
                 <h1>GERENCIAMENTO DE FATURAS E SERVIÇOS DE TELEMETRIA</h1>
-                
+                <p>Maas Serviços</p>
             </div>
         </div>
     </header>
 
     <main>
         <div class="background-cards">
+            <div class="cards1">
+                <div class="conteudo">
+                    <div class="information">
+                        <span>Despesas Total</span>
+                       <h1>R$: -</h1>
+                    </div>
+                    <img src="../assets/icons/file-invoice-dollar.png" alt="">
+                </div>
+            </div>
             <div class="cards">
-                <span>Despesas Total</span>
-                <h1>R$: 356.480,00</h1>
+                <div class="conteudo">
+                    <div class="information">
+                        <span>Faturas Recebidas</span>
+                        <h1>-</h1>
+                    </div>
+                    <img src="../assets/icons/checked.png" alt="">
+                </div>
             </div>
 
             <div class="cards">
-                <span>Faturas Recebidas</span>
-                <h1>23</h1>
+                <div class="conteudo">
+                    <div class="information">
+                        <span>Total de Contratos</span>
+                        <h1>-</h1>
+                    </div>
+                    <img src="../assets/icons/contract.png" alt="">
+                </div>
             </div>
 
             <div class="cards">
-                <span>Total de Contratos</span>
-                <h1>15</h1>
-            </div>
-
-            <div class="cards">
-                <span>Total de Aparelhos</span>
-                <h1>23</h1>
+                <div class="conteudo">
+                    <div class="information">
+                        <span>Total de Aparelhos</span>
+                        <h1>-</h1>
+                    </div>
+                    <img src="../assets/icons/delivery-truck.png" alt="">
+                </div>
             </div>
         </div>
 
         <div class="background-search-bar">
             <div class="pesquisa">
-                <input type="text" name="pesquisa" placeholder="Buscar por ID da Fatura">
+                <input type="text" id="barra_pesquisa" name="pesquisa" placeholder="Buscar por ID da Fatura">
             </div>
             <div class="filtros">
-                <select name="" id="">
-                    <option value="selecione">Selecione...</option>
-                    <option value="mensalidade">Mensalidade dos Aparelhos</option>
+                <img src="../assets/icons/filtro.png" alt="filtro">
+                <select name="" id="selection_filtros">
+                    <option value="selecione">Todos os Status</option>
+                    <option value="mensalidade">Faturamento</option>
                     <option value="manutencao">Manutenção</option>
                     <option value="danificados">Aparelhos Danificados/Extraviados</option>
                 </select>
             </div>
             <div class="fucionalidades">
-                <button type="button">Exportar</button>
-                <button type="button">Nova Fatura</button>
+                <button type="button" id="exportar">Exportar</button>
+                <button type="button" id="gerador_faturas">Nova Fatura</button>
+                
+                <div class="modal_fatura" id="modal">
+                    <div class="formulario-modal">
+                        <div class="information_modal">
+                            <img src="../assets/icons/google-docs.png" alt="documento">
+                            <div class="titulo_modal">
+                                <h1>Nova Fatura</h1>
+                                <p>Resgistrar fatura recebida do fornecedor</p>
+                            </div>
+                        </div>
+                        <div class="colunas_formulario">
+                            <div class="formulario">
+                                <div class="titulo_input">
+                                    <img src="" alt="">
+                                    <p>Número da Fatura *</p>
+                                </div>
+                                <input type="number" class="input_dados">
+                            </div>
+
+                            <div class="formulario">
+                                <div class="titulo_input">
+                                    <img src="" alt="">
+                                    <p>Fornecedor *</p>
+                                </div>
+                                <select name="" id="" class="input_dados">
+                                    <option value="">001/2026 - COMURG</option>
+                                    <option value="">003/2026 - COMURG</option>
+                                    <option value="">016/2020 - COMURG</option>
+                                    <option value="">30000070/2025 - SANEAGO</option>
+                                    <option value="">018/2025 - SECRET. DA ECONOMIA</option>
+                                    <option value="">006/2020 - SEMAD</option>
+                                    <option value="">187/2025 - SEDUC</option>
+                                </select>
+                            </div>
+
+                            <div class="formulario">
+                                <div class="titulo_input">
+                                    <img src="" alt="">
+                                    <p>Tipo de Serviço *</p>
+                                </div>
+                                <select name="" id="" class="input_dados">
+                                    <option value="">Selecione...</option>
+                                    <option value="">Manutenção</option>
+                                    <option value="">Faturamento</option>
+                                    <option value="">Aparelhos Danificados/Extraviados</option>
+                                </select>
+                            </div>
+
+                            <div class="formulario">
+                                <div class="titulo_input">
+                                    <img src="" alt="">
+                                    <p>valor (R$) *</p>
+                                </div>
+                                <input type="number" class="input_dados">
+                            </div>
+
+                            <div class="formulario">
+                                <div class="titulo_input">
+                                    <img src="" alt="">
+                                    <p>Data de Emissão *</p>
+                                </div>
+                                <input type="date" class="input_dados">
+                            </div>
+
+                            <div class="formulario">
+                                <div class="titulo_input">
+                                    <img src="" alt="">
+                                    <p>Data de Vencimento *</p>
+                                </div>
+                                <input type="date" class="input_dados">
+                            </div>
+                        </div>
+                        <div class="formulario">
+                            <div class="titulo_input">
+                                <img src="" alt="">
+                                <p>Status dos Pagamento</p>
+                            </div>
+                            <select name="" id="">
+                                <option value="">Selecione...</option>
+                                <option value="">Pendente</option>
+                                <option value="">Pago</option>
+                                <option value="">Atrasado</option>
+                            </select>
+                        </div>
+
+                        <div class="formulario">
+                            <div class="titulo_input">
+                                <img src="" alt="">
+                                <p>Descrição / Observações</p>
+                            </div>
+                            <input type="text">
+                        </div>
+
+                        <div class="buttom_formulario">
+                            <button id="cancelar_fatura">Cancelar</button>
+                            <button id="salvar_fatura">Salvar Fatura</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -80,15 +200,15 @@
                         <th>Ações</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            Sem nenhuma informação.
-                        </td>
+                <tbody class="call_tables">
+                    <tr class="linhavazia">
+                        <td class="table_td" colspan="9"> Sem nenhuma informação.</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </main>
+
+    <script src="../js/faturamento.js"></script>
 </body>
 </html>

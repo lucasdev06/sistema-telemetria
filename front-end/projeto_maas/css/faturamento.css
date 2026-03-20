@@ -9,7 +9,7 @@ body{
   font-family: "DM Sans", sans-serif;
   background-color: #F2ECDE;
 }
-/* 
+ 
 .barra-lateral-menu{
     background-color: #183B48;
     width: 260px;
@@ -44,7 +44,7 @@ body{
 }
 
 .container_header{
-    margin: 20px 20px 0px 296px;
+    margin: 0px 20px 0px 296px;
     display: flex;
     background-color: #183B48;
     max-width: 100%;
@@ -65,25 +65,208 @@ body{
     padding: 10px;
 }
 
-.information_cards_principal{
-    margin-left: 270px;
+main{
+    margin: 30px 20px 0px 300px;
 }
 
-.information_cards_principal .cards{
+.background-cards{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cards1{
+    background-color: #ffff;
+    min-width: 150px;
+    width: 400px;
     height: 100px;
-    margin: 30px 0px 0px 40px;
-    padding: 20px;
-    width: 440px;
-    border-radius: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center; /* centraliza vertical */
+}
+
+.cards{
+    background-color: #ffff;
+    min-width: 250px;
+    margin-left: 10px;
+    width: 400px;
+    height: 100px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centraliza vertical */
+    align-items: flex-start; /* mantém à esquerda */
+}
+
+.conteudo {
+    display: flex;
+    justify-content: space-between; /* joga imagem pra direita */
+    align-items: center;
+    width: 100%;
+}
+
+
+.conteudo span {
+    color: rgba(0, 0, 0, 0.719);
+}
+
+.conteudo h1 {
+    color: #183b48;
+    font-size: 30px;
+    margin: 0;
+}
+
+.conteudo img{
+    width: 50px;
+}
+
+.background-search-bar{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    background-color: #ffff;
+    height: 70px;
+    padding: 10px;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.pesquisa #barra_pesquisa{
+    height: 25px;
+    margin-left: 30px;
+    width: 400px;
+    border: 1px solid #183b48a4;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+}
+
+.filtros{
+    display: flex;
+}
+
+.filtros img{
+    margin-right: 10px;
+    width: 40px;
+    height: 42px;
+}
+
+.filtros #selection_filtros{
+    height: 45px;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.fucionalidades #exportar{
     background-color: #183B48;
-    color: #F2ECDE;
-    display: inline-block;
+    margin-right: 20px;
+    width: 130px;
+    height: 45px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    font-size: 17px;
+    color: #ffff;
 }
 
-.information_cards h1{
-    font-size: 39px;
+.fucionalidades #gerador_faturas{
+    background-color: #57B179;
+    margin-right: 20px;
+    width: 130px;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    font-size: 17px;
+    color: #ffff;
 }
 
-.information_cards span{
-    font-size: 22px;
-} */
+.backgroud-table{
+    margin-top: 25px;
+    background-color: #ffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.backgroud-table table {
+    width: 100%;
+    
+}
+
+.backgroud-table table th{
+    border-bottom: 1px solid #ccc;
+}
+
+.backgroud-table table td{
+    padding: 5px;
+    border-bottom: 1px solid #cccccc80;
+    text-align: center;
+}
+
+.backgroud-table .table_td:hover{
+    background-color: #183b4838;
+    border-radius: 2px;
+}
+
+
+.modal_fatura {
+    display: none; /* escondido */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+/* quando ativo */
+.modal_fatura.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* caixa do modal */
+.formulario-modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 600px;
+}
+
+.information_modal{
+    display: flex;
+    align-items: flex-start;
+}
+
+.information_modal .titulo_modal{
+    margin-left: 10px;
+}
+
+.information_modal img{
+    width: 60px;
+}
+
+.information_modal .titulo_modal h1{
+    color: #183B48;
+}
+
+.information_modal .titulo_modal p{
+    color: #000000c2;
+}
+
+.colunas_formulario{
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* duas colunas */
+    gap: 15px;
+}
