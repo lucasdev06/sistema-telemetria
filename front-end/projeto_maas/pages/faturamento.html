@@ -8,7 +8,7 @@
 </head>
 <body>
     <nav class="barra-lateral-menu">
-        <img src="../assets/images/logo_maas.png" alt="Logo Maas Serviços">
+        <!-- <img src="../assets/images/logo_maas.png" alt="Logo Maas Serviços"> -->
         <ul class="list_menu">
             <li class="menu-option" style="padding: 10px; height: 40px; border-radius: 10px;"><a href="../index.html">Contr. Chamado</a></li>
             <li class= "menu-option" style="background-color: #57B179; padding: 10px; height: 40px; border-radius: 10px;"><a href="../pages/faturamento.html">Faturamento</a></li>
@@ -19,14 +19,75 @@
         <div class="container_header">
             <div class="container_information">
                 <h1>GERENCIAMENTO DE FATURAS E SERVIÇOS DE TELEMETRIA</h1>
-                <p>MAAS-SERVIÇOS</p>
+                
             </div>
         </div>
     </header>
 
     <main>
         <div class="background-cards">
-            <div></div>
+            <div class="cards">
+                <span>Despesas Total</span>
+                <h1>R$: 356.480,00</h1>
+            </div>
+
+            <div class="cards">
+                <span>Faturas Recebidas</span>
+                <h1>23</h1>
+            </div>
+
+            <div class="cards">
+                <span>Total de Contratos</span>
+                <h1>15</h1>
+            </div>
+
+            <div class="cards">
+                <span>Total de Aparelhos</span>
+                <h1>23</h1>
+            </div>
+        </div>
+
+        <div class="background-search-bar">
+            <div class="pesquisa">
+                <input type="text" name="pesquisa" placeholder="Buscar por ID da Fatura">
+            </div>
+            <div class="filtros">
+                <select name="" id="">
+                    <option value="selecione">Selecione...</option>
+                    <option value="mensalidade">Mensalidade dos Aparelhos</option>
+                    <option value="manutencao">Manutenção</option>
+                    <option value="danificados">Aparelhos Danificados/Extraviados</option>
+                </select>
+            </div>
+            <div class="fucionalidades">
+                <button type="button">Exportar</button>
+                <button type="button">Nova Fatura</button>
+            </div>
+        </div>
+
+        <div class="backgroud-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID Fatura</th>
+                        <th>Fornecedor</th>
+                        <th>Serviços</th>
+                        <th>Qd. Aparelhos</th>
+                        <th>Valor</th>
+                        <th>Emissão</th>
+                        <th>Vencimento</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            Sem nenhuma informação.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </main>
 </body>
