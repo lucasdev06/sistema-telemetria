@@ -50,6 +50,7 @@ body{
     max-width: 100%;
     border-radius: 20px;
     padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .container_header h1{
@@ -105,24 +106,25 @@ body{
 }
 .cards{
     padding: 15px;
-    width: 300px;
-    height: 100px;
+    width: 369px;
+    height: 110px;
     border-radius: 20px;
-    background-color: #183B48;
-    color: #F2ECDE;
+    background-color: #ffffffcc;
+    color: #183B48;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .information_cards h1{
-    font-size: 28px;
+    font-size: 32px;
     margin: 0;
 }
 
 .information_cards span{
     font-size: 16px;
-    margin: 0;
+    color: rgba(0, 0, 0, 0.719);
 }
 
 .icone_cards img{
@@ -237,10 +239,12 @@ body{
 
 .table-scroll {
     margin: 60px 30px 0px 300px;
-    background-color: #d4d4d4;
+    background-color: #ffffffcc;
     border-radius: 10px;
     max-height: 500px;         /* agora funciona */
     overflow-y: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 10px;
 }
 
 .table-scroll table{
@@ -254,15 +258,15 @@ body{
 
 
 .table-scroll th{
-    border: 0.1px solid #aca9a9c4;
+    border-bottom: 0.1px solid #ccc;
     padding: 8px;
     text-align: center;
-    background-color: #183B48;
-    color: #d4d4d4;
+    background-color: #ffffffcc;
+    color: #183B48;
 }
 
 .table-scroll td{
     text-align: center;
     height: 45px;
-    border-bottom: 0.5px solid #9ab2bb;
+    border-bottom: 0.5px solid #cccccca2;
 }

@@ -50,6 +50,7 @@ body{
     max-width: 100%;
     border-radius: 20px;
     padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .container_header h1{
@@ -269,4 +270,61 @@ main{
     display: grid;
     grid-template-columns: 1fr 1fr; /* duas colunas */
     gap: 15px;
+}
+
+.input_dados{
+    width: 280px;
+    height: 25px;
+    border-radius: 5px;
+    border: 0.5px solid #183b4869;
+    padding: 5px;
+}
+
+.select_input{
+    width: 293px;
+    height: 38px;
+    border-radius: 5px;
+    border: 0.5px solid #183b4869;
+    padding: 5px;
+}
+
+.formulario .status_select{
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    border: 0.5px solid #183b4869;
+}
+
+.formulario .descrição_input{
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    border: 0.5px solid #183b4869;
+}
+
+.buttom_formulario{
+    margin: 20px;
+    text-align: center;
+}
+
+.buttom_formulario #cancelar_fatura{
+    width: 200px;
+    height: 50px;
+    background-color: #F2ECDE;
+    color: #000000;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 0.5px solid #183B48;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.buttom_formulario #salvar_fatura{
+    width: 200px;
+    height: 50px;
+    background-color: #57B179;
+    color: #F2ECDE;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 0.5px solid #183B48;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }

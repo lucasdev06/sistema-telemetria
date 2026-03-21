@@ -1,7 +1,5 @@
 const openBtn_formulario = document.getElementById('gerador_faturas');
-
 const cancelar_formulario = document.getElementById('cancelar_fatura');
-
 const modal = document.getElementById('modal');
 
 // ===============================
@@ -11,6 +9,10 @@ const modal = document.getElementById('modal');
 openBtn_formulario.addEventListener('click', () => {
     modal.classList.add('active');
 });
+
+cancelar_formulario.addEventListener('click', () => {
+  modal.classList.remove('active')
+})
 
 window.addEventListener('click', (event) => {
   if (event.target === modal) {
