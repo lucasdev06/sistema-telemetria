@@ -12,7 +12,7 @@ body{
  
 .barra-lateral-menu{
     background-color: #183B48;
-    width: 260px;
+    width: 220px;
     height: 100vh;
     padding: 8px;
     text-align: center;
@@ -22,7 +22,7 @@ body{
 }
 
 .barra-lateral-menu img{
-    width: 200px;
+    width: 150px;
     margin: 30px;
 }
 
@@ -32,7 +32,7 @@ body{
 }
 
 .barra-lateral-menu ul li{
-    font-size: 26px;
+    font-size: 23px;
     text-align: left;
     margin-bottom: 60px;
     text-decoration: none;
@@ -205,6 +205,7 @@ main{
 
 .backgroud-table table th{
     border-bottom: 1px solid #ccc;
+    color: #183B48;
 }
 
 .backgroud-table table td{
@@ -300,6 +301,7 @@ main{
     height: 100px;
     border-radius: 10px;
     border: 0.5px solid #183b4869;
+    
 }
 
 .buttom_formulario{

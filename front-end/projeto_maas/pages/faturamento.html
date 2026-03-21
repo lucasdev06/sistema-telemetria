@@ -9,18 +9,17 @@
 </head>
 <body>
     <nav class="barra-lateral-menu">
-        <img src="../assets/images/logo_maas.png" alt="Logo Maas Serviços">
+        <!-- <img src="../assets/images/logo_maas.png" alt="Logo Maas Serviços"> -->
         <ul class="list_menu">
             <li class="menu-option" style="padding: 10px; height: 40px; border-radius: 10px;"><a href="../index.html">Contr. Chamado</a></li>
             <li class= "menu-option" style="background-color: #57B179; padding: 10px; height: 40px; border-radius: 10px;"><a href="../pages/faturamento.html">Faturamento</a></li>
-            <li class="menu-option" style="padding: 10px; height: 40px; border-radius: 10px;"><a href="#">Estoque</a></li>
         </ul>
     </nav>
     <header>
         <div class="container_header">
             <div class="container_information">
                 <h1>GERENCIAMENTO DE FATURAS E SERVIÇOS DE TELEMETRIA</h1>
-                <p>Maas Serviços</p>
+                <!-- <p>Maas Serviços</p> -->
             </div>
         </div>
     </header>
@@ -93,13 +92,13 @@
                                 <p>Resgistrar fatura recebida do fornecedor</p>
                             </div>
                         </div>
-                        <div class="colunas_formulario">
+                        <div class="colunas_formulario" id="formulario">
                             <div class="formulario">
                                 <div class="titulo_input">
                                     <img src="" alt="">
                                     <p>Número da Fatura *</p>
                                 </div>
-                                <input type="text" class="input_dados" placeholder="Nº">
+                                <input type="text" id="id_fatura" class="input_dados" placeholder="Nº">
                             </div>
 
                             <div class="formulario">
@@ -107,14 +106,14 @@
                                     <img src="" alt="">
                                     <p>Fornecedor *</p>
                                 </div>
-                                <select name="Contrato" id="select_input" class="select_input">
-                                    <option value="">001/2026 - COMURG</option>
-                                    <option value="">003/2026 - COMURG</option>
-                                    <option value="">016/2020 - COMURG</option>
-                                    <option value="">30000070/2025 - SANEAGO</option>
-                                    <option value="">018/2025 - SECRET. DA ECONOMIA</option>
-                                    <option value="">006/2020 - SEMAD</option>
-                                    <option value="">187/2025 - SEDUC</option>
+                                <select name="Contrato" id="select_contrato" class="select_input">
+                                    <option value="001/2026 - COMURG">001/2026 - COMURG</option>
+                                    <option value="003/2026 - COMURG">003/2026 - COMURG</option>
+                                    <option value="016/2020 - COMURG">016/2020 - COMURG</option>
+                                    <option value="30000070/2025 - SANEAGO">30000070/2025 - SANEAGO</option>
+                                    <option value="018/2025 - SECRET. DA ECONOMIA">018/2025 - SECRET. DA ECONOMIA</option>
+                                    <option value="006/2020 - SEMAD">006/2020 - SEMAD</option>
+                                    <option value="187/2025 - SEDUC">187/2025 - SEDUC</option>
                                 </select>
                             </div>
 
@@ -123,12 +122,20 @@
                                     <img src="" alt="">
                                     <p>Tipo de Serviço *</p>
                                 </div>
-                                <select name="Tipo de Serviços" id="select_input" class="select_input">
-                                    <option value="">Selecione...</option>
-                                    <option value="">Manutenção</option>
-                                    <option value="">Faturamento</option>
-                                    <option value="">Aparelhos Danificados/Extraviados</option>
+                                <select name="Tipo de Serviços" id="tipo_servicos" class="select_input">
+                                    <option value="selecione...">Selecione...</option>
+                                    <option value="Manutenção">Manutenção</option>
+                                    <option value="Faturamento Mensal">Faturamento</option>
+                                    <option value="Aparelhos Danificados/Extraviados">Aparelhos Danificados/Extraviados</option>
                                 </select>
+                            </div>
+
+                            <div class="formulario">
+                                <div class="titulo_input">
+                                    <img src="" alt="">
+                                    <p>Qd. Aparelhos *</p>
+                                </div>
+                                <input type="number" id="qd_aparelhos" class="input_dados">
                             </div>
 
                             <div class="formulario">
@@ -136,7 +143,7 @@
                                     <img src="" alt="">
                                     <p>Valor (R$) *</p>
                                 </div>
-                                <input type="number" class="input_dados">
+                                <input type="number" id="valor_fatura" class="input_dados">
                             </div>
 
                             <div class="formulario">
@@ -144,7 +151,7 @@
                                     <img src="" alt="">
                                     <p>Data de Emissão *</p>
                                 </div>
-                                <input type="date" class="input_dados">
+                                <input type="date" class="input_dados" id="data_emissao">
                             </div>
 
                             <div class="formulario">
@@ -152,20 +159,20 @@
                                     <img src="" alt="">
                                     <p>Data de Vencimento *</p>
                                 </div>
-                                <input type="date" class="input_dados">
+                                <input type="date" class="input_dados" id="data_vencimento">
                             </div>
-                        </div>
-                        <div class="formulario">
-                            <div class="titulo_input">
-                                <img src="" alt="">
-                                <p>Status dos Pagamento</p>
+                            <div class="formulario">
+                                <div class="titulo_input">
+                                    <img src="" alt="">
+                                    <p>Status dos Pagamento</p>
+                                </div>
+                                <select name="Status" id="status_select" class="status_select">
+                                    <option value="selecione...">Selecione...</option>
+                                    <option value="pendente">Pendente</option>
+                                    <option value="pago">Pago</option>
+                                    <option value="atrasado">Atrasado</option>
+                                </select>
                             </div>
-                            <select name="Status" id="status_select" class="status_select">
-                                <option value="">Selecione...</option>
-                                <option value="">Pendente</option>
-                                <option value="">Pago</option>
-                                <option value="">Atrasado</option>
-                            </select>
                         </div>
 
                         <div class="formulario">
@@ -173,7 +180,7 @@
                                 <img src="" alt="">
                                 <p>Descrição / Observações</p>
                             </div>
-                            <input type="text" class="descrição_input">
+                            <textarea rows="4" cols="50" class="descrição_input" id="descricao"></textarea>
                         </div>
 
                         <div class="buttom_formulario">
@@ -209,6 +216,6 @@
         </div>
     </main>
 
-    <script src="../js/faturamento.js"></script>
+    <script type="module" src="../js/faturamento.js"></script>
 </body>
 </html>
