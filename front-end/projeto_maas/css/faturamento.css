@@ -190,35 +190,34 @@ main{
     color: #ffff;
 }
 
-.backgroud-table{
+.backgroud-table {
     margin-top: 25px;
-    background-color: #ffff;
+    background-color: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     padding: 10px;
     border-radius: 10px;
+    max-height: 450px;        /* define altura máxima do container */
+    overflow-y: auto;          /* ativa scroll vertical */
 }
 
+/* Mantém a largura total da tabela */
 .backgroud-table table {
     width: 100%;
-    
+    border-collapse: collapse;
 }
 
-.backgroud-table table th{
+/* Cabeçalho fixo */
+.backgroud-table table th{ 
     border-bottom: 1px solid #ccc;
     color: #183B48;
 }
 
-.backgroud-table table td{
+/* Corpo da tabela */
+.backgroud-table table td {
     padding: 5px;
     border-bottom: 1px solid #cccccc80;
     text-align: center;
 }
-
-.backgroud-table .table_td:hover{
-    background-color: #183b4838;
-    border-radius: 2px;
-}
-
 
 .modal_fatura {
     display: none; /* escondido */

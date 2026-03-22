@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Faturamento</title>
     <link rel="stylesheet" href="../css/faturamento.css">
-    <link rel="shortcut icon" href="../assets/icons/tracking (3).png" type="image/x-icon">>
+    <link rel="shortcut icon" href="../assets/icons/tracking (3).png" type="image/x-icon">
 </head>
 <body>
     <nav class="barra-lateral-menu">
@@ -120,6 +120,16 @@
                             <div class="formulario">
                                 <div class="titulo_input">
                                     <img src="" alt="">
+                                    <p>Fornecedor *</p>
+                                </div>
+                                <select name="fornecedores" id="select_fornecedores" class="select_input">
+                                    <option value="Rotagyn">RotaGyn</option>
+                                </select>
+                            </div>
+
+                            <div class="formulario">
+                                <div class="titulo_input">
+                                    <img src="" alt="">
                                     <p>Tipo de Serviço *</p>
                                 </div>
                                 <select name="Tipo de Serviços" id="tipo_servicos" class="select_input">
@@ -173,6 +183,13 @@
                                     <option value="Atrasado">Atrasado</option>
                                 </select>
                             </div>
+                            <div class="formulario">
+                                <div class="titulo_input">
+                                    <img src="" alt="">
+                                    <p>Adicionar Arquivo</p>
+                                </div>
+                                <input type="file" value="arquivo"  class="input_dados" id="arquivo_input">
+                            </div>
                         </div>
 
                         <div class="formulario">
@@ -198,6 +215,7 @@
                     <tr>
                         <th>ID Fatura</th>
                         <th>Cliente</th>
+                        <th>Fornecedor</th>
                         <th>Serviços</th>
                         <th>Qd. Aparelhos</th>
                         <th>Valor</th>
