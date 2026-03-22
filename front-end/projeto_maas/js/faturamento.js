@@ -109,15 +109,15 @@ async function preencherTabela_fatura() {
         const tr = document.createElement('tr');
 
         tr.innerHTML = `
-            <td>${item.id_fatura}</td>
-            <td>${item.fornecedor}</td>
-            <td>${item.tipo_servicos}</td>
-            <td>${item.qd_aparelhos}</td>
-            <td>R$ ${item.valor_fatura  }</td>
-            <td>${new Date(item.data_emissao).toLocaleDateString('pt-BR')}</td>
-            <td>${new Date(item.data_vencimento).toLocaleDateString('pt-BR')}</td>
-            <td>${item.status_select}</td>
-            <td>${item.observacoes || ''}</td>
+            <td class="table_td">${item.id_fatura}</td>
+            <td class="table_td">${item.fornecedor}</td>
+            <td class="table_td">${item.tipo_servicos}</td>
+            <td class="table_td">${item.qd_aparelhos}</td>
+            <td class="table_td">${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL'}).format(item.valor_fatura)}</td>
+            <td class="table_td">${new Date(item.data_emissao).toLocaleDateString('pt-BR')}</td>
+            <td class="table_td">${new Date(item.data_vencimento).toLocaleDateString('pt-BR')}</td>
+            <td class="table_td">${item.status_select}</td>
+            <td class="table_td">${item.observacoes || ''}</td>
         `;
 
         tbody.appendChild(tr);
