@@ -13,10 +13,10 @@ function iniciar() {
 }
 
 async function carregarTudo() {
-    await aplicarFiltro(); // já carrega com filtro padrão
+    await aplicarFiltro();
     await calcular_Despesas();
     await qd_contrato();
-    await aplicarfiltros_id()
+    await aplicarfiltros_id();
 }
 
 // ===============================
@@ -30,20 +30,16 @@ function configurarEventos() {
     const tabela = document.querySelector('.call_tables');
     const selectFiltro = document.getElementById('selection_filtros');
 
-    if (openBtn) {
-        openBtn.addEventListener('click', () => {
-            limparFormulario();
-            editando = false;
-            document.getElementById('id_fatura').disabled = false;
-            modal.classList.add('active');
-        });
-    }
+    openBtn?.addEventListener('click', () => {
+        limparFormulario();
+        editando = false;
+        document.getElementById('id_fatura').disabled = false;
+        modal.classList.add('active');
+    });
 
-    if (cancelarBtn) {
-        cancelarBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-    }
+    cancelarBtn?.addEventListener('click', () => {
+        modal.classList.remove('active');
+    });
 
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
@@ -51,24 +47,13 @@ function configurarEventos() {
         }
     });
 
-    if (salvarBtn) {
-        salvarBtn.addEventListener('click', salvarFatura);
-    }
-
-    if (tabela) {
-        tabela.addEventListener('click', handleTabelaClick);
-    }
-
-    // 🔥 EVENTO DO FILTRO
-    if (selectFiltro) {
-        selectFiltro.addEventListener('change', () => {
-            aplicarFiltro();
-        });
-    }
+    salvarBtn?.addEventListener('click', salvarFatura);
+    tabela?.addEventListener('click', handleTabelaClick);
+    selectFiltro?.addEventListener('change', aplicarFiltro);
 }
 
 // ==============================
-// FILTRO (🔥 PRINCIPAL)
+// FILTRO
 // ==============================
 async function aplicarFiltro() {
     const filtro = document.getElementById('selection_filtros').value;
@@ -84,59 +69,48 @@ async function aplicarFiltro() {
 
     const { data, error } = await query;
 
-    if (error) {
-        console.error("Erro filtro:", error);
-        return;
-    }
+    if (error) return console.error(error);
 
     renderTabela(data);
 }
 
+// ==============================
+// FILTRO POR ID
+// ==============================
 async function aplicarfiltros_id() {
     const filtro_id = document.getElementById('barra_pesquisa').value;
 
     let query = client
         .from('controle_faturamento')
         .select('*')
-        .order('data_emissao', { ascending: false })
+        .order('data_emissao', { ascending: false });
 
-    if (filtro_id && filtro_id !== '') {
-    query = query.eq('id_fatura', filtro_id);
+    if (filtro_id) {
+        query = query.eq('id_fatura', filtro_id);
     }
 
-    const {data, error} = await query;
+    const { data, error } = await query;
 
-    
-    if (error) {
-        console.error("Erro filtro:", error);
-        return;
-    }
+    if (error) return console.error(error);
 
     renderTabela(data);
-
-
-    }
+}
 
 // ==============================
-// CALCULAR DESPESAS 💰
+// CALCULAR DESPESAS
 // ==============================
 async function calcular_Despesas() {
     const { data } = await client
         .from('controle_faturamento')
-        .select('*');
+        .select('valor_fatura');
 
-    let total = 0;
+    const total = data.reduce((acc, item) => acc + (Number(item.valor_fatura) || 0), 0);
 
-    data.forEach(item => {
-        total += Number(item.valor_fatura) || 0;
-    });
-
-    const h1 = document.getElementById('valor_despesa');
-
-    h1.innerText = total.toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-    });
+    document.getElementById('valor_despesa').innerText =
+        total.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        });
 }
 
 // ==============================
@@ -145,7 +119,7 @@ async function calcular_Despesas() {
 async function qd_contrato() {
     const { data } = await client
         .from('controle_faturamento')
-        .select('*');
+        .select('id_fatura');
 
     document.getElementById('fatura_recebidas').innerText = data.length;
 }
@@ -157,14 +131,6 @@ async function salvarFatura() {
     try {
         const id_fatura = document.getElementById('id_fatura').value.trim();
         const cliente = document.getElementById('select_contrato').value;
-        const fornecedor = document.getElementById('select_fornecedores').value;
-        const tipo_servicos = document.getElementById('tipo_servicos').value;
-        const qd_aparelhos = parseInt(document.getElementById('qd_aparelhos').value) || 0;
-        const valor_fatura = parseFloat(document.getElementById('valor_fatura').value) || 0;
-        const data_emissao = document.getElementById('data_emissao').value;
-        const data_vencimento = document.getElementById('data_vencimento').value;
-        const status_select = document.getElementById('status_select').value;
-        const observacoes = document.getElementById('descricao').value;
 
         if (!id_fatura || !cliente) {
             alert("Preencha os campos obrigatórios!");
@@ -173,14 +139,14 @@ async function salvarFatura() {
 
         const payload = {
             cliente,
-            fornecedor,
-            tipo_servicos,
-            qd_aparelhos,
-            valor_fatura,
-            data_emissao,
-            data_vencimento,
-            status_select,
-            observacoes
+            fornecedor: document.getElementById('select_fornecedores').value,
+            tipo_servicos: document.getElementById('tipo_servicos').value,
+            qd_aparelhos: parseInt(document.getElementById('qd_aparelhos').value) || 0,
+            valor_fatura: parseFloat(document.getElementById('valor_fatura').value) || 0,
+            data_emissao: document.getElementById('data_emissao').value,
+            data_vencimento: document.getElementById('data_vencimento').value,
+            status_select: document.getElementById('status_select').value,
+            observacoes: document.getElementById('descricao').value
         };
 
         let response;
@@ -203,7 +169,6 @@ async function salvarFatura() {
         }
 
         alert("Fatura salva!");
-
         await carregarTudo();
         document.getElementById('modal').classList.remove('active');
         limparFormulario();
@@ -225,7 +190,6 @@ function formatarData(data) {
 
 function renderTabela(dados) {
     const tbody = document.querySelector('.call_tables');
-
     tbody.innerHTML = '';
 
     if (!dados.length) {
@@ -242,11 +206,12 @@ function renderTabela(dados) {
             <td>${item.fornecedor}</td>
             <td>${item.tipo_servicos}</td>
             <td>${item.qd_aparelhos}</td>
-            <td style="text-align: right;">${Number(item.valor_fatura).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</td>
+            <td>${Number(item.valor_fatura).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</td>
             <td>${formatarData(item.data_emissao)}</td>
             <td>${formatarData(item.data_vencimento)}</td>
             <td>${item.status_select}</td>
             <td>
+                <img src="../assets/icons/delete.png" class="btn-excluir" data-id="${item.id_fatura}" style="width:25px;cursor:pointer;">
                 <img src="../assets/icons/edit.png" class="btn-editar" data-id="${item.id_fatura}" style="width:25px;cursor:pointer;">
                 <img src="../assets/icons/download.png" class="btn-download" data-url="${item.arquivo_url || ''}" style="width:25px;cursor:pointer;">
             </td>
@@ -260,6 +225,8 @@ function renderTabela(dados) {
 // CLICK
 // ===============================
 async function handleTabelaClick(e) {
+
+    // EDITAR
     if (e.target.classList.contains('btn-editar')) {
         const id = e.target.dataset.id;
 
@@ -286,20 +253,44 @@ async function handleTabelaClick(e) {
         document.getElementById('id_fatura').disabled = true;
         document.getElementById('modal').classList.add('active');
     }
+
+    // EXCLUIR (DELETE REAL)
+    if (e.target.classList.contains('btn-excluir')) {
+        const id = e.target.dataset.id;
+
+        if (!confirm('Deseja excluir essa fatura?')) return;
+
+        const { error } = await client
+            .from('controle_faturamento')
+            .delete()
+            .eq('id_fatura', id);
+
+        if (error) {
+            console.error(error);
+            alert('Erro ao excluir');
+            return;
+        }
+
+        await carregarTudo();
+    }
+
+    // DOWNLOAD
+    if (e.target.classList.contains('btn-download')) {
+        const url = e.target.dataset.url;
+
+        if (!url) {
+            alert('Arquivo não disponível');
+            return;
+        }
+
+        window.open(url, '_blank');
+    }
 }
 
 // ===============================
 // LIMPAR
 // ===============================
 function limparFormulario() {
-    document.getElementById('id_fatura').value = '';
-    document.getElementById('select_contrato').value = '';
-    document.getElementById('select_fornecedores').value = '';
-    document.getElementById('tipo_servicos').value = '';
-    document.getElementById('qd_aparelhos').value = '';
-    document.getElementById('valor_fatura').value = '';
-    document.getElementById('data_emissao').value = '';
-    document.getElementById('data_vencimento').value = '';
-    document.getElementById('status_select').value = '';
-    document.getElementById('descricao').value = '';
+    document.querySelectorAll('#modal input, #modal select, #modal textarea')
+        .forEach(el => el.value = '');
 }
