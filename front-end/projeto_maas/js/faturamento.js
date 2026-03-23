@@ -5,10 +5,19 @@ let editando = false;
 // ===============================
 // INICIAR
 // ===============================
-document.addEventListener('DOMContentLoaded', () => {
-    preencherTabela_fatura();
+document.addEventListener('DOMContentLoaded', iniciar);
+
+function iniciar() {
     configurarEventos();
-});
+    carregarTudo();
+}
+
+async function carregarTudo() {
+    await aplicarFiltro(); // já carrega com filtro padrão
+    await calcular_Despesas();
+    await qd_contrato();
+    await aplicarfiltros_id()
+}
 
 // ===============================
 // EVENTOS
@@ -18,17 +27,23 @@ function configurarEventos() {
     const cancelarBtn = document.getElementById('cancelar_fatura');
     const modal = document.getElementById('modal');
     const salvarBtn = document.getElementById('salvar_fatura');
+    const tabela = document.querySelector('.call_tables');
+    const selectFiltro = document.getElementById('selection_filtros');
 
-    openBtn.addEventListener('click', () => {
-        limparFormulario();
-        editando = false;
-        document.getElementById('id_fatura').disabled = false;
-        modal.classList.add('active');
-    });
+    if (openBtn) {
+        openBtn.addEventListener('click', () => {
+            limparFormulario();
+            editando = false;
+            document.getElementById('id_fatura').disabled = false;
+            modal.classList.add('active');
+        });
+    }
 
-    cancelarBtn.addEventListener('click', () => {
-        modal.classList.remove('active');
-    });
+    if (cancelarBtn) {
+        cancelarBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+    }
 
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
@@ -36,31 +51,107 @@ function configurarEventos() {
         }
     });
 
-    salvarBtn.addEventListener('click', salvarFatura);
+    if (salvarBtn) {
+        salvarBtn.addEventListener('click', salvarFatura);
+    }
 
-    document.querySelector('.call_tables').addEventListener('click', handleTabelaClick);
+    if (tabela) {
+        tabela.addEventListener('click', handleTabelaClick);
+    }
+
+    // 🔥 EVENTO DO FILTRO
+    if (selectFiltro) {
+        selectFiltro.addEventListener('change', () => {
+            aplicarFiltro();
+        });
+    }
 }
 
 // ==============================
-// BUSCAR DADOS
+// FILTRO (🔥 PRINCIPAL)
 // ==============================
-async function buscar_information() {
-    const { data, error } = await client
+async function aplicarFiltro() {
+    const filtro = document.getElementById('selection_filtros').value;
+
+    let query = client
         .from('controle_faturamento')
         .select('*')
         .order('data_emissao', { ascending: false });
 
-    if (error) {
-        console.error(error);
-        alert('Erro ao buscar dados');
-        return [];
+    if (filtro && filtro !== 'selecione') {
+        query = query.eq('tipo_servicos', filtro);
     }
 
-    return data;
+    const { data, error } = await query;
+
+    if (error) {
+        console.error("Erro filtro:", error);
+        return;
+    }
+
+    renderTabela(data);
+}
+
+async function aplicarfiltros_id() {
+    const filtro_id = document.getElementById('barra_pesquisa').value;
+
+    let query = client
+        .from('controle_faturamento')
+        .select('*')
+        .order('data_emissao', { ascending: false })
+
+    if (filtro_id && filtro_id !== '') {
+    query = query.eq('id_fatura', filtro_id);
+    }
+
+    const {data, error} = await query;
+
+    
+    if (error) {
+        console.error("Erro filtro:", error);
+        return;
+    }
+
+    renderTabela(data);
+
+
+    }
+
+// ==============================
+// CALCULAR DESPESAS 💰
+// ==============================
+async function calcular_Despesas() {
+    const { data } = await client
+        .from('controle_faturamento')
+        .select('*');
+
+    let total = 0;
+
+    data.forEach(item => {
+        total += Number(item.valor_fatura) || 0;
+    });
+
+    const h1 = document.getElementById('valor_despesa');
+
+    h1.innerText = total.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
 }
 
 // ==============================
-// SALVAR (INSERT / UPDATE + UPLOAD)
+// TOTAL FATURAS
+// ==============================
+async function qd_contrato() {
+    const { data } = await client
+        .from('controle_faturamento')
+        .select('*');
+
+    document.getElementById('fatura_recebidas').innerText = data.length;
+}
+
+// ==============================
+// SALVAR
 // ==============================
 async function salvarFatura() {
     try {
@@ -75,44 +166,9 @@ async function salvarFatura() {
         const status_select = document.getElementById('status_select').value;
         const observacoes = document.getElementById('descricao').value;
 
-        const fileInput = document.getElementById('arquivo_input');
-        const file = fileInput.files[0];
-
-        if (
-            !id_fatura ||
-            cliente === "selecione..." ||
-            fornecedor === "selecione..." ||
-            tipo_servicos === "selecione..." ||
-            status_select === "selecione..." ||
-            !data_emissao ||
-            !data_vencimento
-        ) {
-            alert("Preencha todos os campos corretamente!");
+        if (!id_fatura || !cliente) {
+            alert("Preencha os campos obrigatórios!");
             return;
-        }
-
-        let arquivo_url = null;
-
-        // =========================
-        // UPLOAD DO ARQUIVO
-        // =========================
-        if (file) {
-            const fileName = `${id_fatura}_${Date.now()}_${file.name.replace(/\s/g, "_")}`;
-            const { error: uploadError } = await client.storage
-                .from('faturas')
-                .upload(fileName, file, { cacheControl: '3600', upsert: true });
-
-            if (uploadError) {
-                console.error("ERRO UPLOAD:", uploadError);
-                alert(uploadError.message);
-                return;
-            }
-
-            const { data: publicUrl } = client.storage
-                .from('faturas')
-                .getPublicUrl(fileName);
-
-            arquivo_url = publicUrl.publicUrl;
         }
 
         const payload = {
@@ -127,37 +183,39 @@ async function salvarFatura() {
             observacoes
         };
 
-        if (arquivo_url) payload.arquivo_url = arquivo_url;
+        let response;
 
-        let error;
         if (editando) {
-            const response = await client
+            response = await client
                 .from('controle_faturamento')
                 .update(payload)
                 .eq('id_fatura', id_fatura);
-            error = response.error;
         } else {
-            const response = await client
+            response = await client
                 .from('controle_faturamento')
                 .insert([{ id_fatura, ...payload }]);
-            error = response.error;
         }
 
-        if (error) throw error;
+        if (response.error) {
+            console.error(response.error);
+            alert("Erro ao salvar");
+            return;
+        }
 
-        alert("Fatura salva com sucesso 🚀");
-        await preencherTabela_fatura();
+        alert("Fatura salva!");
+
+        await carregarTudo();
         document.getElementById('modal').classList.remove('active');
         limparFormulario();
 
     } catch (err) {
         console.error(err);
-        alert("Erro ao salvar fatura.");
+        alert("Erro geral");
     }
 }
 
 // ===============================
-// PREENCHER TABELA
+// TABELA
 // ===============================
 function formatarData(data) {
     if (!data) return '';
@@ -165,9 +223,9 @@ function formatarData(data) {
     return `${dia}/${mes}/${ano}`;
 }
 
-async function preencherTabela_fatura() {
-    const dados = await buscar_information();
+function renderTabela(dados) {
     const tbody = document.querySelector('.call_tables');
+
     tbody.innerHTML = '';
 
     if (!dados.length) {
@@ -184,7 +242,7 @@ async function preencherTabela_fatura() {
             <td>${item.fornecedor}</td>
             <td>${item.tipo_servicos}</td>
             <td>${item.qd_aparelhos}</td>
-            <td>${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL'}).format(item.valor_fatura)}</td>
+            <td style="text-align: right;">${Number(item.valor_fatura).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</td>
             <td>${formatarData(item.data_emissao)}</td>
             <td>${formatarData(item.data_vencimento)}</td>
             <td>${item.status_select}</td>
@@ -199,24 +257,19 @@ async function preencherTabela_fatura() {
 }
 
 // ===============================
-// CLICK TABELA (EDITAR + DOWNLOAD)
+// CLICK
 // ===============================
 async function handleTabelaClick(e) {
-
-    // EDITAR
     if (e.target.classList.contains('btn-editar')) {
         const id = e.target.dataset.id;
 
-        const { data, error } = await client
+        const { data } = await client
             .from('controle_faturamento')
             .select('*')
             .eq('id_fatura', id)
             .single();
 
-        if (error) {
-            console.error(error);
-            return;
-        }
+        if (!data) return;
 
         document.getElementById('id_fatura').value = data.id_fatura;
         document.getElementById('select_contrato').value = data.cliente;
@@ -233,27 +286,10 @@ async function handleTabelaClick(e) {
         document.getElementById('id_fatura').disabled = true;
         document.getElementById('modal').classList.add('active');
     }
-
-    // DOWNLOAD
-    if (e.target.classList.contains('btn-download')) {
-        const url = e.target.dataset.url;
-
-        if (!url) {
-            alert("Nenhum arquivo disponível");
-            return;
-        }
-
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = '';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
 }
 
 // ===============================
-// LIMPAR FORMULÁRIO
+// LIMPAR
 // ===============================
 function limparFormulario() {
     document.getElementById('id_fatura').value = '';
@@ -266,7 +302,4 @@ function limparFormulario() {
     document.getElementById('data_vencimento').value = '';
     document.getElementById('status_select').value = '';
     document.getElementById('descricao').value = '';
-    document.getElementById('arquivo_input').value = '';
-
-    document.getElementById('id_fatura').disabled = false;
 }

@@ -30,7 +30,7 @@
                 <div class="conteudo">
                     <div class="information">
                         <span>Despesas Total</span>
-                       <h1>R$: -</h1>
+                       <h1 id="valor_despesa">R$: -</h1>
                     </div>
                     <img src="../assets/icons/file-invoice-dollar.png" alt="">
                 </div>
@@ -39,7 +39,7 @@
                 <div class="conteudo">
                     <div class="information">
                         <span>Faturas Recebidas</span>
-                        <h1>-</h1>
+                        <h1 id="fatura_recebidas">-</h1>
                     </div>
                     <img src="../assets/icons/checked.png" alt="">
                 </div>
@@ -72,11 +72,11 @@
             </div>
             <div class="filtros">
                 <img src="../assets/icons/filtro.png" alt="filtro">
-                <select name="" id="selection_filtros">
-                    <option value="selecione">Todos os Status</option>
-                    <option value="mensalidade">Faturamento</option>
-                    <option value="manutencao">Manutenção</option>
-                    <option value="danificados">Aparelhos Danificados/Extraviados</option>
+                <select name="Filtros" id="selection_filtros">
+                    <option value="selecione" class="selection_filtros">Todos os Status</option>
+                    <option value="Faturamento Mensal" class="selection_filtros">Faturamento</option>
+                    <option value="Manutenção" class="selection_filtros">Manutenção</option>
+                    <option value="Aparelhos Danificados/Extraviados" class="selection_filtros">Aparelhos Danificados/Extraviados</option>
                 </select>
             </div>
             <div class="fucionalidades">

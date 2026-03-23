@@ -6,15 +6,15 @@
 }
 
 body{
-    font-family: "DM Sans", sans-serif;
-    background-color: #F2ECDE;
+  font-family: "DM Sans", sans-serif;
+  background-color: #F2ECDE;
 }
-
+ 
 .barra-lateral-menu{
     background-color: #183B48;
-    width: 260px;
+    width: 238px;
     height: 100vh;
-    padding: 8px;
+    padding: 20px;
     text-align: center;
     position: fixed;
     top: 0;
@@ -23,16 +23,16 @@ body{
 
 .barra-lateral-menu img{
     width: 200px;
-    margin: 30px;
+    margin: 20px 0px 0px 0px;
 }
 
 .barra-lateral-menu ul{
     list-style-type: none;
-    margin: 90px 0px 0px 20px;
+    margin: 200px 0px 0px 0px;
 }
 
 .barra-lateral-menu ul li{
-    font-size: 26px;
+    font-size: 29px;
     text-align: left;
     margin-bottom: 60px;
     text-decoration: none;
