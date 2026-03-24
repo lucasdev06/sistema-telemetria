@@ -16,7 +16,8 @@ async function carregarTudo() {
     await aplicarFiltro();
     await calcular_Despesas();
     await qd_contrato();
-    await aplicarfiltros_id();
+    await total_aparelhos()
+    await total_contratos()
 }
 
 // ===============================
@@ -57,6 +58,7 @@ function configurarEventos() {
 // ==============================
 async function aplicarFiltro() {
     const filtro = document.getElementById('selection_filtros').value;
+    
 
     let query = client
         .from('controle_faturamento')
@@ -65,28 +67,6 @@ async function aplicarFiltro() {
 
     if (filtro && filtro !== 'selecione') {
         query = query.eq('tipo_servicos', filtro);
-    }
-
-    const { data, error } = await query;
-
-    if (error) return console.error(error);
-
-    renderTabela(data);
-}
-
-// ==============================
-// FILTRO POR ID
-// ==============================
-async function aplicarfiltros_id() {
-    const filtro_id = document.getElementById('barra_pesquisa').value;
-
-    let query = client
-        .from('controle_faturamento')
-        .select('*')
-        .order('data_emissao', { ascending: false });
-
-    if (filtro_id) {
-        query = query.eq('id_fatura', filtro_id);
     }
 
     const { data, error } = await query;
@@ -123,6 +103,37 @@ async function qd_contrato() {
 
     document.getElementById('fatura_recebidas').innerText = data.length;
 }
+
+
+// ==============================
+// TOTAL DE APARELHOS
+// ==============================
+
+
+
+async function total_aparelhos() {
+    const { data } = await client
+        .from('cadastros_geral')
+        .select('qd_aparelhos');
+
+    const total = data.reduce((acc, item) => acc + (Number(item.qd_aparelhos) || 0), 0);
+
+    document.getElementById('total_aparelhos').innerText = total.toLocaleString('pt-BR');
+ }
+
+
+// ==============================
+// TOTAL DE Contratos
+// ==============================
+
+async function total_contratos() {
+    const { data } = await client
+        .from('cadastros_geral')
+        .select('n_contrato');
+
+    document.getElementById('total_contrato').innerText = data.length;
+}
+
 
 // ==============================
 // SALVAR
