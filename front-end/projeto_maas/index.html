@@ -59,14 +59,11 @@
                             <label for="text">Status</label>
                             <select name="Tipo_status" id="status" class="selecion_status">
                                 <option value="Selecionar">Selecionar...</option>
-                                <option value="Aberto">Aberto</option>
-                                <option value="Aguardando fornecedor">Aguardando fornecedor</option>
                                 <option value="Aguardando cliente">Aguardando cliente</option>
                                 <option value="Agendado">Agendado</option>
                                 <option value="Em atendimento">Em atendimento</option>
                                 <option value="Concluído">Concluído</option>
                                 <option value="Cancelado / Indisponível">Cancelado / Indisponível</option>
-                                <option value="Aguardando Orçamento">Aguardando Orçamento</option>
                             </select>
                         </div>
 
@@ -118,7 +115,7 @@
         <div class="information_cards_principal">
             <div class="cards">
                 <div class="information_cards">
-                    <h1>12</h1>
+                    <h1 id="em_atendimento">-</h1>
                     <span>Em Atendimento<spanp>
                 </div>
                 <div class="icone_cards">
@@ -127,8 +124,8 @@
             </div>
             <div class="cards">
                 <div class="information_cards">
-                    <h1>1</h1>
-                    <span>Em Atraso</span>
+                    <h1 id="agendado">-</h1>
+                    <span>Agendado</span>
                 </div>
                 <div class="icone_cards">
                     <img src="assets/icons/tempo.png" alt="">
@@ -136,8 +133,8 @@
             </div>
             <div class="cards">
                 <div class="information_cards">
-                    <h1>9</h1>
-                    <span>Aguardando Abertura</span>
+                    <h1 id="Cancelados_Indisponível">-</h1>
+                    <span>Cancelados/Indisponível</span>
                 </div>
                 <div class="icone_cards">
                     <img src="assets/icons/ponto-de-exclamacao.png" alt="">
@@ -145,7 +142,7 @@
             </div>
             <div class="cards">
                 <div class="information_cards">
-                    <h1>24</h1>
+                    <h1 id="ticket_concluido">-</h1>
                     <span>Concluídoa</span>
                 </div>
                 <div class="icone_cards">

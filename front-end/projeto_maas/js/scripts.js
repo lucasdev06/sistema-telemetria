@@ -11,6 +11,10 @@ const btnSalvar = document.querySelector('.btn-primary');
 // ===============================
 document.addEventListener('DOMContentLoaded', preencherTabela);
 
+await em_atendimento();
+await concluidos();
+await agendados();
+await cancelados();
 
 // ===============================
 // BUSCAR DADOS
@@ -29,6 +33,67 @@ async function buscar_information() {
 
   return data;
 }
+
+// ===============================
+// BUSCAR DADOS EM ATENDIMENTO
+// ===============================
+
+async function em_atendimento() {
+  const { data } = await client
+    .from('controle_chamados')
+    .select('status')
+
+    const ticket_atendimento = data.filter(item => item.status === "Em atendimento");
+
+    document.getElementById('em_atendimento').innerHTML = ticket_atendimento.length;
+}
+
+// ===============================
+// BUSCAR DADOS CONCLUIDO
+// ===============================
+
+async function concluidos() {
+  const { data } = await client
+    .from('controle_chamados')
+    .select('status')
+
+    const ticket_concluidos = data.filter(item => item.status === "Concluído");
+
+    document.getElementById('ticket_concluido').innerHTML = ticket_concluidos.length;
+}
+
+// ===============================
+// BUSCAR DADOS AGENDADOS
+// ===============================
+
+async function agendados() {
+  const { data } = await client
+    .from('controle_chamados')
+    .select('status')
+
+  const ticket_agendados = data.filter(item => item.status === 'Agendado');
+
+  document.getElementById('agendado').innerHTML = ticket_agendados.length;
+
+}
+
+
+// ===============================
+// BUSCAR DADOS CANCELADOS
+// ===============================
+
+async function cancelados() {
+  const { data } = await client
+    .from('controle_chamados')
+    .select('status')
+
+  const ticket_cancelados = data.filter(item => item.status === 'Cancelado / Indisponível');
+
+  document.getElementById('Cancelados_Indisponível').innerHTML = ticket_cancelados.length;
+
+}
+
+
 
 // ===============================
 // PREENCHER TABELA
